@@ -19,8 +19,14 @@ const { NotImplementedError } = require('../extensions/index.js');
  * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
  * 
  */
+let ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
 class VigenereCipheringMachine {
-  encrypt() {
+  constructor(trueOrFalse = true) {
+    this.trueOrFalse = trueOrFalse;
+  }
+
+  encrypt(message, key) {
     if (!message || !key) {
       throw new Error();
     }
@@ -37,7 +43,8 @@ class VigenereCipheringMachine {
     }
     return this.trueOrFalse ? message.join("") : message.reverse().join("");
   }
-  decrypt() {
+
+  decrypt(encryptedMessage, key) {
     if (!encryptedMessage || !key) {
       throw new Error();
     }
